@@ -1,0 +1,405 @@
+{
+    "marvel": {
+        "movies":[
+        {
+            "title":"Iron Man",
+            "releaseDate":"May 2, 2008",
+            "director":"Jon Favreau",
+            "file":"ironman",
+            "rottenTomatosScore":"7.9"
+        },
+        {
+            "title":"The Incredible Hulk",
+            "releaseDate":"June 13, 2008",
+            "director":"Louis Leterrier",
+            "file":"gKzYx79y0AQTL4UAk1cBQJ3nvrm",
+            "rottenTomatosScore":"6.6"
+        },
+        {
+            "title":"Iron Man 2",
+            "releaseDate":"May 7, 2010",
+            "director":"Jon Favreau",
+            "file":"ironman2",
+            "rottenTomatosScore":"6.9"
+        },
+        {
+            "title":"Thor",
+            "releaseDate":"May 6, 2011",
+            "director":"Kenneth Branagh",
+            "file":"thor",
+            "rottenTomatosScore":"7.0"
+        },
+        {
+            "title":"Captain America: The First Avenger",
+            "releaseDate":"July 22, 2011",
+            "director":"Joe Johnston",
+            "file":"cathefirstavenger",
+            "rottenTomatosScore":"6.9"
+        },{
+            "title":"The Avengers",
+            "releaseDate":"May 4, 2012",
+            "director":"Joss Whedon",
+            "file":"theavengers",
+            "rottenTomatosScore":"8.0"
+        },
+        {
+            "title":"Iron Man 3",
+            "releaseDate":"May 3, 2013",
+            "director":"Shane Black",
+            "file":"ironman3",
+            "rottenTomatosScore":"7.1"
+        },
+        {
+            "title":"Thor: The Dark World",
+            "releaseDate":"November 8, 2013",
+            "director":"Alan Taylor",
+            "file":"thorthedarkworld",
+            "rottenTomatosScore":"6.8"
+        },
+        {
+            "title":"Captain America: The Winter Soldier",
+            "releaseDate":"April 4, 2014",
+            "director":"Anthony and Joe Russo",
+            "file":"cathewintersoldier",
+            "rottenTomatosScore":"7.8"
+        },
+        {
+            "title":"Guardians of the Galaxy",
+            "releaseDate":"August 1, 2014",
+            "director":"James Gunn",
+            "file":"gotg",
+            "rottenTomatosScore":"8.0"
+        },
+        {
+            "title":"Avengers: Age of Ultron",
+            "releaseDate":"May 1, 2015",
+            "director":"Jon Favreau",
+            "file":"avengersageofultron",
+            "rottenTomatosScore":"7.3"
+        },
+        {
+            "title":"Ant-Man",
+            "releaseDate":"July 17, 2015",
+            "director":"Peyton Reed",
+            "file":"antman",
+            "rottenTomatosScore":"7.3"
+        },
+        {
+            "title":"Captain America: Civil War",
+            "releaseDate":"May 6, 2016",
+            "director":"Anthony and Joe Russo",
+            "file":"cacivilwar",
+            "rottenTomatosScore":"7.8"
+        },
+        {
+            "title":"Doctor Strange",
+            "releaseDate":"November 4, 2016",
+            "director":"Scott Derrickson",
+            "file":"doctorstrange",
+            "rottenTomatosScore":"7.5"
+        },
+        {
+            "title":"Guardians of the Galaxy Vol. 2",
+            "releaseDate":"May 5, 2017",
+            "director":"James Gunn",
+            "file":"gotgvol2",
+            "rottenTomatosScore":"7.6"
+        },
+        {
+            "title":"Spider-Man: Homecoming",
+            "releaseDate":"July 7, 2017",
+            "director":"Jon Watts",
+            "file":"spidermanhomecoming",
+            "rottenTomatosScore":"7.4"
+        },
+        {
+            "title":"Thor: Ragnarok",
+            "releaseDate":"November 3, 2017",
+            "director":"Taika Waititi",
+            "file":"thorragnarok",
+            "rottenTomatosScore":"7.9"
+        },
+        {
+            "title":"Black Panther",
+            "releaseDate":"February 16, 2018",
+            "director":"Ryan Coogler",
+            "file":"blackpanther",
+            "rottenTomatosScore":"7.3"
+        },
+        {
+            "title":"Avengers: Infinity War",
+            "releaseDate":"April 27, 2018",
+            "director":"Anthony and Joe Russo",
+            "file":"infinitywar",
+            "rottenTomatosScore":"8.4"
+        },
+        {
+            "title":"Ant-Man and the Wasp",
+            "releaseDate":"July 6, 2018",
+            "director":"Peyton Reed",
+            "file":"antmanandthewasp",
+            "rottenTomatosScore":"7.0"
+        },
+        {
+            "title":"Captain Marvel",
+            "releaseDate":"March 8, 2019",
+            "director":"Anna Boden and Ryan Fleck",
+            "file":"captainmarvel",
+            "rottenTomatosScore":"6.8"
+        },
+        {
+            "title":"Avengers: Endgame",
+            "releaseDate":"April 26, 2019",
+            "director":"Anthony and Joe Russo",
+            "file":"endgame",
+            "rottenTomatosScore":"8.4"
+        },
+        {
+            "title":"Spider-Man: Far From Home",
+            "releaseDate":"July 2, 2019",
+            "director":"Jon Watts",
+            "file":"spidermanfarfromhome",
+            "rottenTomatosScore":"7.4"
+        }
+        ]
+    },
+    "pixar": {
+        "movies":[
+            {
+                "title":"Toy Story",
+                "releaseDate":"November 22, 1995",
+                "director":"John Lasseter",
+                "rottenTomatosScore":"8.3"
+            },
+            {
+                "title":"A Bug's Life",
+                "releaseDate":"November 20, 1998",
+                "director":"John Lasseter",
+                "rottenTomatosScore":"7.2"
+            },
+            {
+                "title":"Toy Story 2",
+                "releaseDate":"November 24, 1999",
+                "director":"John Lasseter",
+                "rottenTomatosScore":"7.9"
+            },
+            {
+                "title":"Monsters Inc.",
+                "releaseDate":"November 2, 2001",
+                "director":"Pete Docter",
+                "rottenTomatosScore":"8.1"
+            },
+            {
+                "title":"Finding Nemo",
+                "releaseDate":"May 30, 2003",
+                "director":"Andrew Stanton",
+                "rottenTomatosScore":"8.2"
+            },
+            {
+                "title":"The Incredibles",
+                "releaseDate":"November 5, 2004",
+                "director":"Brad Bird",
+                "rottenTomatosScore":"8.0"
+            },
+            {
+                "title":"Cars",
+                "releaseDate":"June 9, 2006",
+                "director":"John Lasseter",
+                "rottenTomatosScore":"7.2"
+            },
+            {
+                "title":"Ratatouille",
+                "releaseDate":"June 29, 2007",
+                "director":"Brad Bird",
+                "rottenTomatosScore":"8.1"
+            },
+            {
+                "title":"WALL-E",
+                "releaseDate":"June 27, 2008",
+                "director":"Andrew Stanton",
+                "rottenTomatosScore":"8.4"
+            },
+            {
+                "title":"Up",
+                "releaseDate":"May 29, 2009",
+                "director":"Pete Docter",
+                "rottenTomatosScore":"8.3"
+            },
+            {
+                "title":"Toy Story 3",
+                "releaseDate":"June 18, 2010",
+                "director":"Lee Unkrich",
+                "rottenTomatosScore":"8.3"
+            },
+            {
+                "title":"Cars 2",
+                "releaseDate":"June 24, 2011",
+                "director":"John Lasseter",
+                "rottenTomatosScore":"6.2"
+            },
+            {
+                "title":"Brave",
+                "releaseDate":"June 22, 2012",
+                "director":"Mark Andrews and Brenda Chapman",
+                "rottenTomatosScore":"7.1"
+            },
+            {
+                "title":"Monsters University",
+                "releaseDate":"June 21, 2013",
+                "director":"Dan Scanlon",
+                "rottenTomatosScore":"7.2"
+            },
+            {
+                "title":"Inside Out",
+                "releaseDate":"June 19, 2015",
+                "director":"Pete Docter",
+                "rottenTomatosScore":"8.1"
+            },
+            {
+                "title":"The Good Dinosaur",
+                "releaseDate":"November 25,2015",
+                "director":"Peter Sohn",
+                "rottenTomatosScore":"6.7"
+            },
+            {
+                "title":"Finding Dory",
+                "releaseDate":"June 17, 2016",
+                "director":"Andrew Stanton",
+                "rottenTomatosScore":"7"
+            },
+            {
+                "title":"Cars 3",
+                "releaseDate":"June 16, 2017",
+                "director":"Brian Fee",
+                "rottenTomatosScore":"8.4"
+            },
+            {
+                "title":"Coco",
+                "releaseDate":"November 22, 2017",
+                "director":"Lee Unkrich",
+                "rottenTomatosScore":"8.4"
+            },
+            {
+                "title":"Incredibles 2",
+                "releaseDate":"June 18, 2018",
+                "director":"Brad Bird",
+                "rottenTomatosScore":"7.6"
+            },
+            {
+                "title":"Toy Story 4",
+                "releaseDate":"June 21 2019",
+                "director":"Josh Cooley",
+                "rottenTomatosScore":"7.7"
+            },
+            {
+                "title":"Onward",
+                "releaseDate":"March 6, 2020",
+                "director":"Dan Scanlon",
+                "rottenTomatosScore":"7.4"
+            },
+            {
+                "title":"Soul",
+                "releaseDate":"December 25, 2020",
+                "director":"Pete Docter",
+                "rottenTomatosScore":"8.0"
+            },
+            {
+                "title":"Luca",
+                "releaseDate":"June 18, 2021",
+                "director":"Enrico Casarosa",
+                "rottenTomatosScore":"7.4"
+            },
+            {
+                "title":"Turning Red",
+                "releaseDate":"March 11, 2022",
+                "director":"Domee Shi",
+                "rottenTomatosScore":"7.0"
+            },
+            {
+                "title":"Lightyear",
+                "releaseDate":"June 17, 2022",
+                "director":"Angus MacLane",
+                "rottenTomatosScore":"6.1"
+            },
+            {
+                "title":"Elemental",
+                "releaseDate":"June 16, 2023",
+                "director":"Peter Sohn",
+                "rottenTomatosScore":"7.0"
+            }
+
+        ]
+    },
+    "starWars": {
+        "movies":[
+            {
+                "title":"Episode I - The Phantom Menace",
+                "releaseDate":"May 19, 1999",
+                "director":"George Lucas",
+                "rottenTomatosScore":"6.5"
+            },
+            {
+                "title":"Episode II - Attack of the Clones",
+                "releaseDate":"May 16, 2002",
+                "director":"George Lucas",
+                "rottenTomatosScore":"6.6"
+            },
+            {
+                "title":"Episode III - Revenge of the Sith",
+                "releaseDate":"May 19, 2005",
+                "director":"George Lucas",
+                "rottenTomatosScore":"7.6"
+            },
+            {
+                "title":"Rogue One: A Star Wars Story",
+                "releaseDate":"December 16, 2016",
+                "director":"Gareth Edwards",
+                "rottenTomatosScore":"7.8"
+            },
+            {
+                "title":"Solo: A Star Wars Story",
+                "releaseDate":"May 25, 2018",
+                "director":"Ron Howard",
+                "rottenTomatosScore":"6.9"
+            },
+            {
+                "title":"Episode IV - A New Hope",
+                "releaseDate":"May 25, 1977",
+                "director":"George Lucas",
+                "rottenTomatosScore":"8.6"
+            },
+            {
+                "title":"Episode V - The Empire Strikes Back",
+                "releaseDate":"May 21, 1980",
+                "director":"Irvin Keshner",
+                "rottenTomatosScore":"8.7"
+            },
+            {
+                "title":"Episode VI - Return of the Jedi",
+                "releaseDate":"May 25, 1983",
+                "director":"Richard Marquand",
+                "rottenTomatosScore":"8.3"
+            },
+            {
+                "title":"Episode VII - The Force Awakens",
+                "releaseDate":"December 18, 2015",
+                "director":"J.J. Abrahms",
+                "rottenTomatosScore":"7.8"
+            },
+            {
+                "title":"Episode VIII - The Last Jedi",
+                "releaseDate":"December 15, 2017",
+                "director":"Rian Johnson",
+                "rottenTomatosScore":"6.9"
+            },
+            {
+                "title":"Episode IX - The Rise of Skywalker",
+                "releaseDate":"December 20, 2019",
+                "director":"J.J. Abrahms",
+                "rottenTomatosScore":"6.4"
+            }
+            
+            
+        ]
+    }
+}
