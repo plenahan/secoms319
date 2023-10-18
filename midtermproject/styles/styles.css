@@ -26,3 +26,18 @@ body{
 .select {
     color: rgb(0, 149, 255);
 }
+
+       h1{
+        background-color:#f8f9fa;
+        text-align: center;
+        margin: auto;
+        width: 50%;
+        margin-bottom:20%;
+        padding: 10px;
+      }
+      body{
+          background-color:#f8f9fa;
+      }
+      h2{
+          margin-top:20%;
+      }
