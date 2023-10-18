@@ -169,162 +169,189 @@
                 "title":"Toy Story",
                 "releaseDate":"November 22, 1995",
                 "director":"John Lasseter",
+                "file":"toystory",
                 "rottenTomatosScore":"8.3"
             },
             {
                 "title":"A Bug's Life",
                 "releaseDate":"November 20, 1998",
                 "director":"John Lasseter",
+                "file":"bugslife",
                 "rottenTomatosScore":"7.2"
             },
             {
                 "title":"Toy Story 2",
                 "releaseDate":"November 24, 1999",
                 "director":"John Lasseter",
+                "file":"toystory2",
                 "rottenTomatosScore":"7.9"
             },
             {
                 "title":"Monsters Inc.",
                 "releaseDate":"November 2, 2001",
                 "director":"Pete Docter",
+                "file":"monstersinc",
                 "rottenTomatosScore":"8.1"
             },
             {
                 "title":"Finding Nemo",
                 "releaseDate":"May 30, 2003",
                 "director":"Andrew Stanton",
+                "file":"findingnemo",
                 "rottenTomatosScore":"8.2"
             },
             {
                 "title":"The Incredibles",
                 "releaseDate":"November 5, 2004",
                 "director":"Brad Bird",
+                "file":"incredibles",
                 "rottenTomatosScore":"8.0"
             },
             {
                 "title":"Cars",
                 "releaseDate":"June 9, 2006",
                 "director":"John Lasseter",
+                "file":"cars",
                 "rottenTomatosScore":"7.2"
             },
             {
                 "title":"Ratatouille",
                 "releaseDate":"June 29, 2007",
                 "director":"Brad Bird",
+                "file":"rat",
                 "rottenTomatosScore":"8.1"
             },
             {
                 "title":"WALL-E",
                 "releaseDate":"June 27, 2008",
                 "director":"Andrew Stanton",
+                "file":"walle",
                 "rottenTomatosScore":"8.4"
             },
             {
                 "title":"Up",
                 "releaseDate":"May 29, 2009",
                 "director":"Pete Docter",
+                "file":"up",
                 "rottenTomatosScore":"8.3"
             },
             {
                 "title":"Toy Story 3",
                 "releaseDate":"June 18, 2010",
                 "director":"Lee Unkrich",
+                "file":"toystory3",
                 "rottenTomatosScore":"8.3"
             },
             {
                 "title":"Cars 2",
                 "releaseDate":"June 24, 2011",
                 "director":"John Lasseter",
+                "file":"cars2",
                 "rottenTomatosScore":"6.2"
             },
             {
                 "title":"Brave",
                 "releaseDate":"June 22, 2012",
                 "director":"Mark Andrews and Brenda Chapman",
+                "file":"brave",
                 "rottenTomatosScore":"7.1"
             },
             {
                 "title":"Monsters University",
                 "releaseDate":"June 21, 2013",
                 "director":"Dan Scanlon",
+                "file":"monstersu",
                 "rottenTomatosScore":"7.2"
             },
             {
                 "title":"Inside Out",
                 "releaseDate":"June 19, 2015",
                 "director":"Pete Docter",
+                "file":"insideout",
                 "rottenTomatosScore":"8.1"
             },
             {
                 "title":"The Good Dinosaur",
                 "releaseDate":"November 25,2015",
                 "director":"Peter Sohn",
+                "file":"gooddinosaur",
                 "rottenTomatosScore":"6.7"
             },
             {
                 "title":"Finding Dory",
                 "releaseDate":"June 17, 2016",
                 "director":"Andrew Stanton",
+                "file":"findingdory",
                 "rottenTomatosScore":"7"
             },
             {
                 "title":"Cars 3",
                 "releaseDate":"June 16, 2017",
                 "director":"Brian Fee",
-                "rottenTomatosScore":"8.4"
+                "file":"cars3",
+                "rottenTomatosScore":"6.7"
             },
             {
                 "title":"Coco",
                 "releaseDate":"November 22, 2017",
                 "director":"Lee Unkrich",
+                "file":"coco",
                 "rottenTomatosScore":"8.4"
             },
             {
                 "title":"Incredibles 2",
                 "releaseDate":"June 18, 2018",
                 "director":"Brad Bird",
+                "file":"incredibles2",
                 "rottenTomatosScore":"7.6"
             },
             {
                 "title":"Toy Story 4",
                 "releaseDate":"June 21 2019",
                 "director":"Josh Cooley",
+                "file":"toystory4",
                 "rottenTomatosScore":"7.7"
             },
             {
                 "title":"Onward",
                 "releaseDate":"March 6, 2020",
                 "director":"Dan Scanlon",
+                "file":"onward",
                 "rottenTomatosScore":"7.4"
             },
             {
                 "title":"Soul",
                 "releaseDate":"December 25, 2020",
                 "director":"Pete Docter",
+                "file":"soul",
                 "rottenTomatosScore":"8.0"
             },
             {
                 "title":"Luca",
                 "releaseDate":"June 18, 2021",
                 "director":"Enrico Casarosa",
+                "file":"luca",
                 "rottenTomatosScore":"7.4"
             },
             {
                 "title":"Turning Red",
                 "releaseDate":"March 11, 2022",
                 "director":"Domee Shi",
+                "file":"turningred",
                 "rottenTomatosScore":"7.0"
             },
             {
                 "title":"Lightyear",
                 "releaseDate":"June 17, 2022",
                 "director":"Angus MacLane",
+                "file":"lightyear",
                 "rottenTomatosScore":"6.1"
             },
             {
                 "title":"Elemental",
                 "releaseDate":"June 16, 2023",
                 "director":"Peter Sohn",
+                "file":"elemental",
                 "rottenTomatosScore":"7.0"
             }
 
@@ -336,66 +363,77 @@
                 "title":"Episode I - The Phantom Menace",
                 "releaseDate":"May 19, 1999",
                 "director":"George Lucas",
+                "file":"phantommenace",
                 "rottenTomatosScore":"6.5"
             },
             {
                 "title":"Episode II - Attack of the Clones",
                 "releaseDate":"May 16, 2002",
                 "director":"George Lucas",
+                "file":"attackoftheclones",
                 "rottenTomatosScore":"6.6"
             },
             {
                 "title":"Episode III - Revenge of the Sith",
                 "releaseDate":"May 19, 2005",
                 "director":"George Lucas",
+                "file":"revengeofthesith",
                 "rottenTomatosScore":"7.6"
             },
             {
                 "title":"Rogue One: A Star Wars Story",
                 "releaseDate":"December 16, 2016",
                 "director":"Gareth Edwards",
+                "file":"rogueone",
                 "rottenTomatosScore":"7.8"
             },
             {
                 "title":"Solo: A Star Wars Story",
                 "releaseDate":"May 25, 2018",
                 "director":"Ron Howard",
+                "file":"solo",
                 "rottenTomatosScore":"6.9"
             },
             {
                 "title":"Episode IV - A New Hope",
                 "releaseDate":"May 25, 1977",
                 "director":"George Lucas",
+                "file":"anewhope",
                 "rottenTomatosScore":"8.6"
             },
             {
                 "title":"Episode V - The Empire Strikes Back",
                 "releaseDate":"May 21, 1980",
                 "director":"Irvin Keshner",
+                "file":"empirestrikesback",
                 "rottenTomatosScore":"8.7"
             },
             {
                 "title":"Episode VI - Return of the Jedi",
                 "releaseDate":"May 25, 1983",
                 "director":"Richard Marquand",
+                "file":"returnofthejedi",
                 "rottenTomatosScore":"8.3"
             },
             {
                 "title":"Episode VII - The Force Awakens",
                 "releaseDate":"December 18, 2015",
                 "director":"J.J. Abrahms",
+                "file":"theforceawakens",
                 "rottenTomatosScore":"7.8"
             },
             {
                 "title":"Episode VIII - The Last Jedi",
                 "releaseDate":"December 15, 2017",
                 "director":"Rian Johnson",
+                "file":"lastjedi",
                 "rottenTomatosScore":"6.9"
             },
             {
                 "title":"Episode IX - The Rise of Skywalker",
                 "releaseDate":"December 20, 2019",
                 "director":"J.J. Abrahms",
+                "file":"riseofskywalker",
                 "rottenTomatosScore":"6.4"
             }
             
