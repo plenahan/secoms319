@@ -8,128 +8,50 @@ const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [searchValue, setSearchValue] = useState("");
+    const [nameValidated, setNameValidated] = useState(false);
+    const [emailValue, setEmailValue] = useState("");
+    const [emailValidated, setEmailValidated] = useState(false);
+    const [creditValue, setCreditValue] = useState('');
+    const [creditValidated, setCreditValidated] = useState(false);
+    const [addressValue, setAddressValue] = useState('');
+    const [addressValidated, setAddressValidated] = useState(false);
+    const [cityValidated, setCityValidated] = useState(false);
+    const [stateValidated, setStateValidated] = useState(false);
+    const [zipValue, setZipValue] = useState('');
+    const [zipValidated, setZipValidated] = useState(false);
+
+    const usStates = [
+      "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+      "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+      "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
+      "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
+      "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+      "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+      "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
+      "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    ];
     
     useEffect(() => {
         total();
 
     }, [cart]);
     useEffect(() => {
-        if(currentPage == "cart"){
 
-
-
-//Add your code under this line
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-const form = document.getElementById('checkout-form')
-const inputCard = document.querySelector('#inputCard')
-const alertTrigger = document.getElementById('submit-btn')
-const summaryCard = document.querySelector('.card')
-const summaryList = document.querySelector('.card > ul')
-
-console.log(summaryList)
-
-var order = { name: '',
-    email: '',
-    card: '' 
-}
-
-const alert = (message, type) => {
-    const wrapper = document.createElement('div')
-    wrapper.innerHTML = [
-    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-    ` <div>${message}</div>`,
-    ' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    '</div>'
-    ].join('')
-    alertPlaceholder.append(wrapper)
-}
-
-function isNumeric (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n)
-    }
-    inputCard.addEventListener('input', event => {
-    if (!inputCard.value) {
-    return event.preventDefault() // stops modal from being shown
-    } else {
-    inputCard.value = inputCard.value.replace(/-/g, '')
-    let newVal = ''
-    for (var i = 0, nums = 0; i < inputCard.value.length; i++) {
-    if (nums != 0 && nums % 4 == 0) {
-    newVal += '-'
-    }
-    newVal += inputCard.value[i]
-    if (isNumeric(inputCard.value[i])) {
-    nums++
-    }
-    }
-    inputCard.value = newVal
-    }
-})
-
-form.addEventListener('submit', event => {
-    //if (!form.checkValidity()) {
-    if (!validate()) {
-    alertPlaceholder.innerHTML = ''
-    alert('<i class="bi-exclamation-circle"></i> Something went wrong!','danger')
-    }
-    event.preventDefault()
-    event.stopPropagation()
-    //form.classList.add('was-validated')
-}, false )
-
-
-let validate = function(){
-  let val = true;
-  let email = document.getElementById('inputEmail4')
-  let name = document.getElementById('inputName')
-  let card = document.getElementById('inputCard')
-  
-  if (!email.value.match(
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      )){
-    email.setAttribute("class", "form-control is-invalid");
-    val = false;
-  }
-  else{
-      email.setAttribute("class", "form-control is-valid");
-      order.email = email.value
-  }
-
-  if (name.value.length == 0)
-  {
-    name.setAttribute("class","form-control is-invalid")
-    val = false
-  }
-  else{
-    name.setAttribute("class", "form-control is-valid");
-    order.name = name.value
-  }
-
-  if (!card.value.match(/^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/))
-  {
-    card.setAttribute("class","form-control is-invalid")
-    val = false
-  }
-  else{
-    card.setAttribute("class", "form-control is-valid");
-    order.card = card.value
-  }
-
-  if (val){
-    form.classList.add("collapse")
-
-    for (const [key, value] of Object.entries(order)) {
-        summaryList.innerHTML += '<li class="list-group-item"> <b>' + `${key}` + ': </b>' + `${value}` +'</li>'
-    }
-    summaryCard.classList.remove("collapse")
-    alertPlaceholder.innerHTML = ""
-    alert('<i class="bi-cart-check-fill"></i> You have made an order!', 'success')
-  }
-  return val;
-}
-    }
-}
-    , [currentPage])
+const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
+      setCreditValidated(creditValue.match(pattern));
+    }, [creditValue]);
+    useEffect(() => {
+      const pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    setEmailValidated(emailValue.match(pattern));
+    }, [emailValue]);
+    useEffect(() => {
+      const pattern = /^\d{0,4}\s\w+\s\w+$/
+    setAddressValidated(addressValue.match(pattern));
+    }, [addressValue]);
+    useEffect(() => {
+      const pattern = /^\d{5}$/
+    setZipValidated(zipValue.match(pattern));
+    }, [zipValue]);
     
     const total = () => {
     let totalVal = 0;
@@ -142,9 +64,6 @@ let validate = function(){
         setCart([...cart, el]);
     };
     
-    // function getCart(){
-    //     return cart;
-    // }
     const removeFromCart = (el) => {
         const hardCopy = [...cart];
         const index = cart.findIndex((cartItem) => cartItem.id === el.id);
@@ -171,7 +90,7 @@ let validate = function(){
               <div key={item.id}>
                 {/* <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3"> */}
 
-              <div class="col">
+                <div class="col">
                         <div class="card shadow-sm">
                           {/* <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> */}
                           <img className="img-fluid" src={item.image} width={150} />
@@ -191,9 +110,153 @@ let validate = function(){
                 // </div>
             );
           });
+          function validate(){
     
         
-        const filteredItems = items.filter((el) =>
+            function validateName(event){
+              if (event.target.value.length === 0)
+             {
+              //alert('Something went wrong!','danger')
+              setNameValidated(false)
+             } else {
+              setNameValidated(true)
+             }
+            }
+            function validateEmail(event){
+              setEmailValue(event.target.value);
+            }    
+
+              function isNumeric (n) {
+                return !isNaN(parseFloat(n)) && isFinite(n)
+              }
+            
+              function handleCreditChange(val){
+                const formattedValue = val.replace(/-/g, '');
+                    let newVal = '';
+                    for (var i = 0, nums = 0; i < formattedValue.length; i++) {
+                      if (nums != 0 && nums % 4 == 0) {
+                        newVal += '-';
+                      }
+                      newVal += formattedValue[i]
+                      if (isNumeric(formattedValue[i])) {
+                      nums++;
+                      }
+                      }
+                return newVal;
+            
+              }
+              function validateCredit(event){
+                setCreditValue(handleCreditChange(event.target.value));
+              }
+              function validateAddress(event){
+                setAddressValue(event.target.value);
+              }
+              function validateCity(event){
+                if (event.target.value.length === 0)
+               {
+            
+                setCityValidated(false)
+               } else {
+                setCityValidated(true)
+               }
+              }
+              function validateState(event){
+                setStateValidated(event.target.value !== "Choose...");
+              }
+              function validateZip(event){
+                setZipValue(event.target.value); 
+              }
+                return(
+                  <div>
+    <div>
+      
+        <div>
+
+<div class="row" >
+  <div class="col-2"></div>
+
+
+  <div class="col-8 card shadow-sm" style={{backgroundColor: 'white', justifyContent: 'center'}}>
+
+    <h1>Payment information</h1>
+
+    <div id="liveAlertPlaceholder"></div>
+
+    <form class="row g-3" id="checkout-form"/>
+
+      <div class="col-md-6">
+        <label for="inputName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="inputName" onChange={validateName}/>
+        {nameValidated && <div>Looks good!</div>}
+        {!nameValidated && <div>Must be like, "John Doe"</div>}
+        <br/>
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" onChange={validateEmail}/>
+        {emailValidated && <div>Looks good!</div>}
+        {!emailValidated && <div>Must be like, "abc@xyz.efg"</div>}
+        <br/>
+      </div>
+
+      <div class="col-12">
+        <label for="inputCard" class="form-label">Card</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi-credit-card-fill"></i></span>
+          <input type="text" id="inputCard" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX"
+                        aria-label="Username" aria-describedby="basic-addon1" value = {creditValue} onChange={validateCredit}/>
+        </div>
+        {creditValidated ? (<div>Looks good!</div>) : (<div>Must be like, "7777-7777-7777-7777"</div>)}
+        <br/>
+      </div>
+
+      <div class="col-12">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" onChange={validateAddress}/>
+        {addressValidated ? (<div>Looks good!</div>) : (<div>Must be like, "1234 Main St"</div>)}
+        <br/>
+      </div>
+      <div class="col-12">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" placeholder = "Iowa" onChange={validateCity}/>
+        {cityValidated ? (<div>Looks good!</div>) : (<div>Must be like, "Iowa"</div>)}
+        <br/>
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select" onChange={validateState}>
+          <option selected>Choose...</option>
+          {usStates.map((state, index) => (
+          <option key={index} value={state}>{state}</option>
+          ))}
+        </select>
+        {stateValidated ? (<div>Looks good!</div>) : (<div>Please pick a state</div>)}
+        <br/>
+      </div>
+      <div class="col-md-4">
+      <div>
+  <label for="inputZip" className="form-label">Zip</label>
+  <input type="text" className="form-control" id="inputZip" onChange={validateZip} />
+  {zipValidated ? <div>Looks good!</div> : <div>Must be like, "50265"</div>}
+  <br/>
+</div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-success"> <i class="bi-bag-check"></i> Order</button>
+      </div></div>
+    </div>
+    </div>
+    </div>
+    </div>
+    );
+    }
+    const checkOut = validate();
+    const filteredItems = items.filter((el) =>
             el.title.toLowerCase().includes(searchValue)
         );
         const listItems = filteredItems.map((el) => (
@@ -234,98 +297,21 @@ let validate = function(){
                     return shop;
                 }
               };
-
-const myCart = (
-    <div style={{backgroundColor: "ghostwhite"}}>
-      <div class="row row-cols-1 row-cols-sm-4 row-cols-md-9 g-9" style={{justifyContent: 'center'}}>
-        {uniqueCartItems}
-        </div>
-        <div>
-
-<div class="row" >
-  <div class="col-2"></div>
-
-
-  <div class="col-8 card shadow-sm" style={{backgroundColor: 'white', justifyContent: 'center'}}>
-
-    <h1>Payment information</h1>
-
-    <div id="liveAlertPlaceholder"></div>
-
-    <form class="row g-3" id="checkout-form"/>
-
-      <div class="col-md-6">
-        <label for="inputName" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="inputName"/>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-        <div class="invalid-feedback">
-          Must be like, "John Doe"
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail4"/>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-        <div class="invalid-feedback">
-          Must be like, "abc@xyz.efg"
-        </div>
-      </div>
-
-      <div class="col-12">
-        <label for="inputCard" class="form-label">Card</label>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1"><i class="bi-credit-card-fill"></i></span>
-          <input type="text" id="inputCard" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX"
-            aria-label="Username" aria-describedby="basic-addon1"/>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-          <div class="invalid-feedback">
-            Must be like, "7777-7777-7777-7777"
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <label for="inputAddress" class="form-label">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
-      </div>
-      <div class="col-12">
-        <label for="inputAddress2" class="form-label">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
-      </div>
-      <div class="col-md-6">
-        <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity"/>
-      </div>
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">State</label>
-        <select id="inputState" class="form-select">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <label for="inputZip" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="inputZip"/>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-success"> <i class="bi-bag-check"></i> Order</button>
-      </div></div>
-    </div>
-    </div>
-    </div>
-    
-);
+              const myCart = (
+                <div  style={{backgroundColor: "ghostwhite"}}>
+                  <div class="row row-cols-1 row-cols-sm-4 row-cols-md-9 g-9" style={{justifyContent:'center'}}>
+        
+                    {uniqueCartItems}
+                    </div>
+                    <div>{checkOut}</div>
+            
+                </div>
+            
+            );
 
 const shop = (
     <div>
-    STORE SE/ComS319
+    {/* STORE SE/ComS319 */}
     <div class="card">
     <div class="row">
     {/* HERE, IT IS THE SHOPING CART */}
@@ -334,7 +320,7 @@ const shop = (
     <div class="row">
     <div class="col">
     <h4>
-    <b>319 Shopping Cart</b>
+    {/* <b>319 Shopping Cart</b> */}
     </h4>
     <input type="text" id="search" placeholder="Search" onChange={handleSearch}/>
     </div>
