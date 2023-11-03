@@ -169,10 +169,26 @@ let validate = function(){
             const item = cart.find((el) => el.id === id);
             return (
               <div key={item.id}>
-                <img className="img-fluid" src={item.image} width={150} />
-                <div> Quantity: {howManyofThis(item.id)}</div>
-                ${item.price}
-              </div>
+                {/* <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3"> */}
+
+              <div class="col">
+                        <div class="card shadow-sm">
+                          {/* <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> */}
+                          <img className="img-fluid" src={item.image} width={150} />
+                          <div class="card-body">
+                            <p class="card-text">Quantity: {howManyofThis(item.id)}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              {/* <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                              </div> */}
+                              <small class="text-body-secondary">${item.price}</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                // </div>
             );
           });
     
@@ -220,15 +236,17 @@ let validate = function(){
               };
 
 const myCart = (
-    <div>
-        <div>{uniqueCartItems}</div>
-        <div><div class="container">
+    <div style={{backgroundColor: "ghostwhite"}}>
+      <div class="row row-cols-1 row-cols-sm-4 row-cols-md-9 g-9" style={{justifyContent: 'center'}}>
+        {uniqueCartItems}
+        </div>
+        <div>
 
-<div class="row">
+<div class="row" >
   <div class="col-2"></div>
 
 
-  <div class="col-8">
+  <div class="col-8 card shadow-sm" style={{backgroundColor: 'white', justifyContent: 'center'}}>
 
     <h1>Payment information</h1>
 
@@ -301,8 +319,6 @@ const myCart = (
       </div></div>
     </div>
     </div>
-    </div>
-        
     </div>
     
 );
