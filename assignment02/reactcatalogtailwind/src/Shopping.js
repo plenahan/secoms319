@@ -8,6 +8,7 @@ const Shop = () => {
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [searchValue, setSearchValue] = useState("");
+    const [nameValue, setNameValue] = useState("");
     const [nameValidated, setNameValidated] = useState(false);
     const [emailValue, setEmailValue] = useState("");
     const [emailValidated, setEmailValidated] = useState(false);
@@ -15,10 +16,16 @@ const Shop = () => {
     const [creditValidated, setCreditValidated] = useState(false);
     const [addressValue, setAddressValue] = useState('');
     const [addressValidated, setAddressValidated] = useState(false);
+    const [cityValue, setCityValue] = useState("");
     const [cityValidated, setCityValidated] = useState(false);
     const [stateValidated, setStateValidated] = useState(false);
     const [zipValue, setZipValue] = useState('');
     const [zipValidated, setZipValidated] = useState(false);
+    let formValidated = false;
+    function setFormValidated(){
+      formValidated = zipValidated && stateValidated && cityValidated && addressValidated && creditValidated && emailValidated && nameValidated
+    }
+    
 
     const usStates = [
       "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
@@ -118,7 +125,9 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
              {
               //alert('Something went wrong!','danger')
               setNameValidated(false)
+              // setNameValue(event.target.value)
              } else {
+              setNameValue(event.target.value)
               setNameValidated(true)
              }
             }
@@ -152,11 +161,13 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
                 setAddressValue(event.target.value);
               }
               function validateCity(event){
+                
                 if (event.target.value.length === 0)
                {
             
                 setCityValidated(false)
                } else {
+                setCityValue(event.target.value)
                 setCityValidated(true)
                }
               }
@@ -166,6 +177,8 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
               function validateZip(event){
                 setZipValue(event.target.value); 
               }
+              
+              
                 return(
                   <div>
     <div>
@@ -186,7 +199,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
 
       <div class="col-md-6">
         <label for="inputName" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="inputName" onChange={validateName}/>
+        <input type="text" class="form-control" id="inputName" value={nameValue} onChange={validateName}/>
         {nameValidated && <div>Looks good!</div>}
         {!nameValidated && <div>Must be like, "John Doe"</div>}
         <br/>
@@ -194,7 +207,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail" onChange={validateEmail}/>
+        <input type="email" class="form-control" id="inputEmail" value={emailValue} onChange={validateEmail}/>
         {emailValidated && <div>Looks good!</div>}
         {!emailValidated && <div>Must be like, "abc@xyz.efg"</div>}
         <br/>
@@ -213,7 +226,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
 
       <div class="col-12">
         <label for="inputAddress" class="form-label">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" onChange={validateAddress}/>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" value={addressValue} onChange={validateAddress}/>
         {addressValidated ? (<div>Looks good!</div>) : (<div>Must be like, "1234 Main St"</div>)}
         <br/>
       </div>
@@ -223,7 +236,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
       </div>
       <div class="col-md-6">
         <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity" placeholder = "Iowa" onChange={validateCity}/>
+        <input type="text" class="form-control" id="inputCity" placeholder = "Iowa" value={cityValue} onChange={validateCity}/>
         {cityValidated ? (<div>Looks good!</div>) : (<div>Must be like, "Iowa"</div>)}
         <br/>
       </div>
@@ -241,13 +254,14 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
       <div class="col-md-4">
       <div>
   <label for="inputZip" className="form-label">Zip</label>
-  <input type="text" className="form-control" id="inputZip" onChange={validateZip} />
+  <input type="text" className="form-control" id="inputZip" value={zipValue} onChange={validateZip} />
   {zipValidated ? <div>Looks good!</div> : <div>Must be like, "50265"</div>}
   <br/>
 </div>
       </div>
+      <div>Order Total: {cartTotal}</div>
       <div class="col-12">
-        <button type="submit" class="btn btn-success"> <i class="bi-bag-check"></i> Order</button>
+        <button type="submit" id="order" class="btn btn-success" onClick={() => setCurrentPage('confirmation')}> <i class="bi-bag-check" ></i> Order</button>
       </div></div>
     </div>
     </div>
@@ -292,6 +306,13 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
                   case 'cart':
                     return myCart;
                   //   return <Cart />;
+                  case 'confirmation':
+                    setFormValidated()
+                    if(formValidated){
+                      return confirmation
+                    }
+                    formValidated = false;
+                    return myCart
                   default:
                   //   return <Shop />;
                     return shop;
@@ -307,6 +328,13 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
             
                 </div>
             
+            );
+
+            const confirmation = (
+              <div>
+                <h1>Thank You!</h1>
+                <h3>Your Order has been placed.</h3>
+              </div>
             );
 
 const shop = (
