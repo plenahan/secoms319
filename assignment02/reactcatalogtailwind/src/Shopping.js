@@ -4,10 +4,13 @@ import items from "./selected_products.json";
 
 const Shop = () => {
 
+    //used to set current page
     const [currentPage, setCurrentPage] = useState('home');    
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
+    //used for search bar
     const [searchValue, setSearchValue] = useState("");
+    //all used for validation
     const [nameValue, setNameValue] = useState("");
     const [nameValidated, setNameValidated] = useState(false);
     const [emailValue, setEmailValue] = useState("");
@@ -16,17 +19,24 @@ const Shop = () => {
     const [creditValidated, setCreditValidated] = useState(false);
     const [addressValue, setAddressValue] = useState('');
     const [addressValidated, setAddressValidated] = useState(false);
-    const [cityValue, setCityValue] = useState("");
+    const [cityValue, setCityValue] = useState('');
     const [cityValidated, setCityValidated] = useState(false);
+    const [stateValue, setStateValue] = useState('');
     const [stateValidated, setStateValidated] = useState(false);
     const [zipValue, setZipValue] = useState('');
     const [zipValidated, setZipValidated] = useState(false);
-    let formValidated = false;
-    function setFormValidated(){
-      formValidated = zipValidated && stateValidated && cityValidated && addressValidated && creditValidated && emailValidated && nameValidated
-    }
     
-
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      creditNumber: '',
+      address: '',
+      city: '',
+      state: '',
+      zipcode: '',
+    });
+    
+    //used to create the state drop down menue
     const usStates = [
       "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
       "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
@@ -42,9 +52,11 @@ const Shop = () => {
         total();
 
     }, [cart]);
+    //checks when field values are changed and then does the validation check
+    //I found that when just doing this inside of the function that is called by onChange it updates one input too slowly
     useEffect(() => {
 
-const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
+      const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
       setCreditValidated(creditValue.match(pattern));
     }, [creditValue]);
     useEffect(() => {
@@ -60,6 +72,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
     setZipValidated(zipValue.match(pattern));
     }, [zipValue]);
     
+    //original code from cart exercise
     const total = () => {
     let totalVal = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -71,6 +84,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
         setCart([...cart, el]);
     };
     
+    //this finds the index of the given element if it exists and removes it from the array of cart items
     const removeFromCart = (el) => {
         const hardCopy = [...cart];
         const index = cart.findIndex((cartItem) => cartItem.id === el.id);
@@ -79,6 +93,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
           setCart(hardCopy);
         }
       };
+      //original code
       function howManyofThis(id) {
         let hmot = cart.filter((cartItem) => cartItem.id === id);
         return hmot.length;
@@ -91,6 +106,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
         ${el.price}
         </div>
         ));
+        //turning cart itmes into a set in order to put them in the checkout view correctly
         const uniqueCartItems = Array.from(new Set(cart.map((el) => el.id))).map((id) => {
             const item = cart.find((el) => el.id === id);
             return (
@@ -117,20 +133,20 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
                 // </div>
             );
           });
+          //form validation stuff
           function validate(){
     
-        
+            //if length exists basically, its valid
             function validateName(event){
               if (event.target.value.length === 0)
              {
-              //alert('Something went wrong!','danger')
               setNameValidated(false)
-              // setNameValue(event.target.value)
              } else {
               setNameValue(event.target.value)
               setNameValidated(true)
              }
             }
+            //this just changes the email value which is then checked in the useEffect
             function validateEmail(event){
               setEmailValue(event.target.value);
             }    
@@ -138,7 +154,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
               function isNumeric (n) {
                 return !isNaN(parseFloat(n)) && isFinite(n)
               }
-            
+              //this is the formatter used previously just formatted for react
               function handleCreditChange(val){
                 const formattedValue = val.replace(/-/g, '');
                     let newVal = '';
@@ -154,31 +170,72 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
                 return newVal;
             
               }
+              //same as email, just changes value to be checked above
               function validateCredit(event){
                 setCreditValue(handleCreditChange(event.target.value));
               }
+              //same ^
               function validateAddress(event){
                 setAddressValue(event.target.value);
               }
+              //this works same as name since I have no way of knowing every single city in the US
               function validateCity(event){
                 
                 if (event.target.value.length === 0)
                {
-            
                 setCityValidated(false)
                } else {
                 setCityValue(event.target.value)
                 setCityValidated(true)
                }
               }
+              //since the state is a drop down, as long as the value isnt the default instruction one, it is a state and therefore valid
               function validateState(event){
+                setStateValue(event.target.value)
                 setStateValidated(event.target.value !== "Choose...");
               }
+              //works same as email and address
               function validateZip(event){
                 setZipValue(event.target.value); 
               }
+              //just resets everything to the default value
+              function resetValidation(){
+                setNameValidated(false);
+                setNameValue("");
+                setEmailValidated(false);
+                setEmailValue("");
+                setCreditValidated(false);
+                setCreditValue("");
+                setAddressValidated(false);
+                setAddressValue("");
+                setCityValidated(false);
+                setStateValidated(false);
+                setZipValidated(false);
+                setZipValue("");
+
+              }
+              function setInformation(){
+                setFormData({
+                  name: nameValue,
+                  email: emailValue,
+                  creditNumber: creditValue,
+                  address: addressValue,
+                  city: cityValue,
+                  state: stateValue,
+                  zipcode: zipValue,
+                });
+              }
+              //if everything is valid move to the confirmation page and reset the validation for the cart items
+              function cartValidated(){
+                if(zipValidated && stateValidated && cityValidated && addressValidated && creditValidated && emailValidated && nameValidated ){
+                  setCurrentPage('confirmation')
+                  setInformation();
+                  resetValidation();
+                }
+              }
               
               
+                //just the outputted JSX, there are messages embedded that show validation for the user based on the values of the respective validated variable
                 return(
                   <div>
     <div>
@@ -199,7 +256,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
 
       <div class="col-md-6">
         <label for="inputName" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="inputName" value={nameValue} onChange={validateName}/>
+        <input type="text" class="form-control" id="inputName"  onChange={validateName}/>
         {nameValidated && <div>Looks good!</div>}
         {!nameValidated && <div>Must be like, "John Doe"</div>}
         <br/>
@@ -236,8 +293,8 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
       </div>
       <div class="col-md-6">
         <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity" placeholder = "Iowa" value={cityValue} onChange={validateCity}/>
-        {cityValidated ? (<div>Looks good!</div>) : (<div>Must be like, "Iowa"</div>)}
+        <input type="text" class="form-control" id="inputCity" placeholder = "Ames"  onChange={validateCity}/>
+        {cityValidated ? (<div>Looks good!</div>) : (<div>Must be like, "Ames"</div>)}
         <br/>
       </div>
       <div class="col-md-4">
@@ -261,7 +318,7 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
       </div>
       <div>Order Total: {cartTotal}</div>
       <div class="col-12">
-        <button type="submit" id="order" class="btn btn-success" onClick={() => setCurrentPage('confirmation')}> <i class="bi-bag-check" ></i> Order</button>
+        <button type="submit" id="order" class="btn btn-success" onClick={() => cartValidated()}> <i class="bi-bag-check" ></i> Order</button>
       </div></div>
     </div>
     </div>
@@ -269,10 +326,14 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
     </div>
     );
     }
+
+    //check out is whats returned above, the validated form
     const checkOut = validate();
+    //filters the json file based on whats inputted in the search field
     const filteredItems = items.filter((el) =>
             el.title.toLowerCase().includes(searchValue)
         );
+    //whats left is then put into the list items to be shown
         const listItems = filteredItems.map((el) => (
             // PRODUCT
             <div class="row border-top border-bottom" key={el.id}>
@@ -294,10 +355,12 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
             </div>
             </div>
             ));
+            //just sets the the search value to whatever is inputted in all lower case
             function handleSearch(event) {
                 setSearchValue((event.target.value).toLowerCase());
             }      
 
+            //based on input renders the correct page
             const renderPage = () => {
                 switch (currentPage) {
                   case 'home':
@@ -307,33 +370,49 @@ const pattern = /^[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/;
                     return myCart;
                   //   return <Cart />;
                   case 'confirmation':
-                    setFormValidated()
-                    if(formValidated){
-                      return confirmation
-                    }
-                    formValidated = false;
-                    return myCart
+                    return confirmation
                   default:
                   //   return <Shop />;
                     return shop;
                 }
               };
+              //cart items + checkout form validation
               const myCart = (
                 <div  style={{backgroundColor: "ghostwhite"}}>
                   <div class="row row-cols-1 row-cols-sm-4 row-cols-md-9 g-9" style={{justifyContent:'center'}}>
         
                     {uniqueCartItems}
-                    </div>
+                  </div>
                     <div>{checkOut}</div>
             
                 </div>
             
             );
-
+            const myInfo = (
+              <div class="col">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <p class="card-text">Name: {formData.name}</p>
+                    <p class="card-text">Email: {formData.email}</p>
+                    <p class="card-text">Card Number: {formData.creditNumber}</p>
+                    <p class="card-text">Address: {formData.address}</p>
+                    <p class="card-text">City: {formData.city}</p>
+                    <p class="card-text">State: {formData.state}</p>
+                    <p class="card-text">Zipcode: {formData.zipcode}</p>
+                  </div>
+                </div>
+              </div>
+            )
+            //confirmation menue
             const confirmation = (
               <div>
                 <h1>Thank You!</h1>
                 <h3>Your Order has been placed.</h3>
+                <p>Your Total is: {cartTotal}</p>
+                <p>Your Information: </p>
+                {myInfo}
+                <p>Items: </p>
+                {uniqueCartItems}
               </div>
             );
 
@@ -375,7 +454,10 @@ return (
 {/* <div className="App"> */}
         <nav class="navbar navbar-expand navbar-dark bg-dark" id="nav" aria-label="Second navbar example">
   <div class="container-fluid">
-  <button class="btn btn-primary rounded-pill px-3" onClick={() => setCurrentPage('home')}>Home</button>
+  {currentPage != 'home' && <button class="btn btn-primary rounded-pill px-3" onClick={() => { if(currentPage === 'confirmation'){
+    setCart([]);
+  }
+    setSearchValue("");setCurrentPage('home');}}>Return</button>}
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
   </button>
@@ -386,7 +468,7 @@ return (
   {/* <a class="nav-link active" aria-current="page" href="#">Browse</a> */}
   </li>
   <li class="nav-item">
-  <button class="btn btn-success rounded-pill px-3" onClick={() => setCurrentPage('cart')}>Cart</button>
+  {currentPage != 'cart' && currentPage != 'confirmation' &&<button class="btn btn-success rounded-pill px-3" onClick={() => setCurrentPage('cart')}>CheckOut</button>}
   </li>
   <li class="nav-item">
   {/* <a class="nav-link" href="#">Checkout</a> */}
