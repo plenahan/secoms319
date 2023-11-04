@@ -8,8 +8,10 @@ const Shop = () => {
     const [currentPage, setCurrentPage] = useState('home');    
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
+
     //used for search bar
     const [searchValue, setSearchValue] = useState("");
+
     //all used for validation
     const [nameValue, setNameValue] = useState("");
     const [nameValidated, setNameValidated] = useState(false);
@@ -26,6 +28,7 @@ const Shop = () => {
     const [zipValue, setZipValue] = useState('');
     const [zipValidated, setZipValidated] = useState(false);
     
+    //Set Initial Form Data
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -52,7 +55,8 @@ const Shop = () => {
         total();
 
     }, [cart]);
-    //checks when field values are changed and then does the validation check
+
+    //Checks when field values are changed and then does the validation check
     //I found that when just doing this inside of the function that is called by onChange it updates one input too slowly
     useEffect(() => {
 
@@ -72,7 +76,7 @@ const Shop = () => {
     setZipValidated(zipValue.match(pattern));
     }, [zipValue]);
     
-    //original code from cart exercise
+    //Updates Cart items and total
     const total = () => {
     let totalVal = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -84,7 +88,7 @@ const Shop = () => {
         setCart([...cart, el]);
     };
     
-    //this finds the index of the given element if it exists and removes it from the array of cart items
+    //This finds the index of the given element if it exists and removes it from the array of cart items
     const removeFromCart = (el) => {
         const hardCopy = [...cart];
         const index = cart.findIndex((cartItem) => cartItem.id === el.id);
@@ -93,7 +97,7 @@ const Shop = () => {
           setCart(hardCopy);
         }
       };
-      //original code
+      //Finds the number of one item ordered
       function howManyofThis(id) {
         let hmot = cart.filter((cartItem) => cartItem.id === id);
         return hmot.length;
@@ -106,7 +110,8 @@ const Shop = () => {
         ${el.price}
         </div>
         ));
-        //turning cart itmes into a set in order to put them in the checkout view correctly
+
+        //turning cart items into a set in order to put them in the checkout view correctly
         const uniqueCartItems = Array.from(new Set(cart.map((el) => el.id))).map((id) => {
             const item = cart.find((el) => el.id === id);
             return (
@@ -133,10 +138,10 @@ const Shop = () => {
                 // </div>
             );
           });
-          //form validation stuff
+          //Form validation
           function validate(){
     
-            //if length exists basically, its valid
+            //if length exists it's valid
             function validateName(event){
               if (event.target.value.length === 0)
              {
@@ -198,7 +203,7 @@ const Shop = () => {
               function validateZip(event){
                 setZipValue(event.target.value); 
               }
-              //just resets everything to the default value
+              //Resets form values
               function resetValidation(){
                 setNameValidated(false);
                 setNameValue("");
