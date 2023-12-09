@@ -3,7 +3,7 @@ const app = express();
 
 const { MongoClient } = require("mongodb");
 const url = "mongodb://127.0.0.1:27017";
-const dbName = "assignment3";
+const dbName = "reactdata";
 const client = new MongoClient(url);
 const db = client.db(dbName);
 const path = require("path");
@@ -24,7 +24,7 @@ app.get("/get", async (req, res) => {
   console.log("Node connected successfully to GET MongoDB");
   const query = {};
   const results = await db
-    .collection("products")
+    .collection("fakestore_catalog")
     .find(query)
     .limit(100)
     .toArray();
@@ -35,8 +35,8 @@ app.get("/get", async (req, res) => {
 
 app.get("/getFromId/:id", async (req, res) => {
   await client.connect();
-  const id = req.params.id;
-  const result = await db.collection("products").findOne({ id: id });
+  const id = req.pasrams.id;
+  const result = await db.collection("fakestore_catalog").findOne({ id: id });
   console.log(result);
   res.status(200);
   res.send(result);
@@ -58,14 +58,18 @@ app.post("/post", async (req, res) => {
   res.send(results);
 });
 
-app.put("/update/:id", async (req, res) => {
+app.put("/update", async (req, res) => {
   await client.connect();
-  const id = req.params.id;
+
+  const id = req.body.itemId;
+  const price = req.body.newPrice;
+  console.log(id);
+  console.log(price);
   const query = { id: id };
   // query.price = req.body.price;
   const results = await db
     .collection("products")
-    .updateOne({ id, id }, { $set: { price: req.body.price } });
+    .updateOne({ id, id }, { $set: { price: price } });
   res.status(200);
   res.send(results);
 });
