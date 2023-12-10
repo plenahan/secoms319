@@ -389,7 +389,7 @@ function App() {
     <div className="App">
       <nav className="navbar navbar-expand navbar-light bg-light">
         <a className="navbar-brand" href="#">
-          Assignemnt 3
+          Assignment 3
         </a>
         {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

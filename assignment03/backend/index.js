@@ -53,7 +53,7 @@ app.post("/post", async (req, res) => {
     image: req.body.image,
     rating: { rate: req.body.rating.rate, count: req.body.rating.count },
   };
-  const results = await db.collection("products").insertOne(item);
+  const results = await db.collection("fakestore_catalog").insertOne(item);
   res.status(200);
   res.send(results);
 });
@@ -68,7 +68,7 @@ app.put("/update", async (req, res) => {
   const query = { id: id };
   // query.price = req.body.price;
   const results = await db
-    .collection("products")
+    .collection("fakestore_catalog")
     .updateOne({ id, id }, { $set: { price: price } });
   res.status(200);
   res.send(results);
@@ -80,7 +80,7 @@ app.delete("/deleteItem", async (req, res) => {
   const id = values[0];
   console.log("Item to delete :", id);
   const query = { id: id };
-  const results = await db.collection("products").deleteOne(query);
+  const results = await db.collection("fakestore_catalog").deleteOne(query);
   res.status(200);
   res.send(results);
 });
