@@ -158,15 +158,15 @@ function App() {
       <div>
         <h1 id="title">{movie.title}</h1>
       
-      <div class="grid_container">
+      <div className="grid_container">
         
-      <div class="cover">
+      <div className="cover">
         <img style={{width:450}}
             src={`http://localhost:8080/images/${movie.file}.png`}
             className="card-img-top"
           />
           </div>
-        <div class="list">
+        <div className="list">
           <h2 id="director">Director: {movie.director}</h2>
           <h2 id="rating">Rating: {movie.rottenTomatosScore}</h2>
           <h2 id="releaseDate">Release Date: {movie.releaseDate}</h2>
@@ -174,81 +174,81 @@ function App() {
         {/* <h2>{movie.title}</h2> */}
         
           </div>
-          <button class="btn btn-primary" onClick={() => setCurrentPage("updateMovie")}>Edit</button>
-          <button class="btn btn-danger" onClick={deleteMovie}>Delete</button>
+          <button className="btn btn-primary" onClick={() => setCurrentPage("updateMovie")}>Edit</button>
+          <button className="btn btn-danger" onClick={deleteMovie}>Delete</button>
           </div>
         
     );
   };
 
   const addMovie = (
-    <div class="container">
-      <h1 class="display-4 fw-normal text-body-emphasis">Add Movie</h1>
+    <div className="container">
+      <h1 className="display-4 fw-normal text-body-emphasis">Add Movie</h1>
     <form action="">
-    <div class="form-row">
-    <div class="form-item">
+    <div className="form-row">
+    <div className="form-item">
      <label>Title</label>
       <input type="text" name="title" value={addNewMovie.title} onChange={handleChange}/>
     </div>
-    <div class="form-item">
+    <div className="form-item">
       <label>Release Date</label>
       <input type="text" name="releaseDate" value={addNewMovie.releaseDate} onChange={handleChange}/>
       </div>
       </div>
-      <div class="form-row">
-      <div class="form-item">
+      <div className="form-row">
+      <div className="form-item">
       <label>Director</label>
       <input type="text" name="director" value={addNewMovie.director} onChange={handleChange}/>
         </div>
-        <div class="form-item">
+        <div className="form-item">
       <label>Rating</label>
       <input type="number" name="rating" value={addNewMovie.rating} onChange={handleChange}/>
         </div>
       </div>
-      <div class="form-row">
-      <div class="form-item">
+      <div className="form-row">
+      <div className="form-item">
       <label>Image File Name</label>
       <input type="text" name="image" value={addNewMovie.file} onChange={handleChange}/>
         </div>
         </div>
       
-      <button class="btn btn-primary" type="submit" onClick={handleOnSubmit}>Submit</button>
+      <button className="btn btn-primary" type="submit" onClick={handleOnSubmit}>Submit</button>
     </form>
     </div>
   );
 
   const updateMovie = (
-    <div class="container">
-      <h1 class="display-4 fw-normal text-body-emphasis">Update Movie</h1>
+    <div className="container">
+      <h1 className="display-4 fw-normal text-body-emphasis">Update Movie</h1>
     <form action="">
-    <div class="form-row">
-    <div class="form-item">
+    <div className="form-row">
+    <div className="form-item">
      <label>Title</label>
       <input type="text" name="title" value={selectedMovie.title} onChange={handleUpdateChange}/>
     </div>
-    <div class="form-item">
+    <div className="form-item">
       <label>Release Date</label>
       <input type="text" name="releaseDate" value={selectedMovie.releaseDate} onChange={handleUpdateChange}/>
       </div>
       </div>
-      <div class="form-row">
-      <div class="form-item">
+      <div className="form-row">
+      <div className="form-item">
       <label>Director</label>
       <input type="text" name="director" value={selectedMovie.director} onChange={handleUpdateChange}/>
         </div>
-        <div class="form-item">
+        <div className="form-item">
       <label>Rating</label>
       <input type="number" name="rating" value={selectedMovie.rating} onChange={handleUpdateChange}/>
         </div>
       </div>
-      <div class="form-row">
-      <div class="form-item">
+      <div className="form-row">
+      <div className="form-item">
       <label>Image File Name</label>
       <input type="text" name="image" value={selectedMovie.file} onChange={handleUpdateChange}/>
         </div>
         </div>
       
-      <button class="btn btn-primary" type="submit" onClick={updateSubmit}>Submit</button>
+      <button className="btn btn-primary" type="submit" onClick={updateSubmit}>Submit</button>
     </form>
     </div>
   );
@@ -257,9 +257,9 @@ function App() {
     // PRODUCT
     if(movies.length > 0){
     return (
-    <div class="container">
-      <h1 class="display-4 fw-normal text-body-emphasis">{movietype}</h1>
-      <button class="btn btn-primary" onClick={() => setCurrentPage("addMovie")}>Add A Movie+</button>
+    <div className="container">
+      <h1 className="display-4 fw-normal text-body-emphasis">{movietype}</h1>
+      <button className="btn btn-primary" onClick={() => setCurrentPage("addMovie")}>Add A Movie+</button>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         
       {movies.map((el, index) => (
@@ -291,9 +291,9 @@ function App() {
   );
       } else {
         return (
-          <div class="container">
-            <h1 class="display-4 fw-normal text-body-emphasis">{movietype}</h1>
-            <button class="btn btn-primary" onClick={() => setCurrentPage("addMovie")}>Add A Movie+</button>
+          <div className="container">
+            <h1 className="display-4 fw-normal text-body-emphasis">{movietype}</h1>
+            <button className="btn btn-primary" onClick={() => setCurrentPage("addMovie")}>Add A Movie+</button>
           </div>
         )
       }
@@ -329,6 +329,14 @@ function App() {
   const showPage = (
     <div>
       {selectedMovie && <MovieDetail movie={selectedMovie} />}
+    </div>
+  )
+
+  const footer = (
+    <div>
+      <footer class="py-3 my-4">
+    <p class="text-center text-body-secondary">© 2023 Team 25, Patrick Lenahan & Jaden Burke</p>
+  </footer>
     </div>
   )
 
@@ -405,9 +413,9 @@ function App() {
 
   const aboutPage = (
     <div>
-      <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
+      <section className="py-5 text-center container">
+        <div className="row py-lg-5">
+          <div className="col-lg-6 col-md-8 mx-auto">
             <h1>About the team</h1>
             <p>
               Students in SE/ComS319 Construction of User Interfaces, Spring
@@ -418,12 +426,12 @@ function App() {
         </div>
       </section>
 
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-4">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <p class="card-text">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <p className="card-text">
                   Meet <strong>Jaden Burke</strong>, co-founder of
                   DisneyMovieRatings.com. With an unshakable love for Disney and
                   a knack for web development, Jaden's vision turned this
@@ -434,7 +442,7 @@ function App() {
                   share the joy and nostalgia of Disney movies with fans
                   worldwide.
                 </p>
-                <p class="card-text">
+                <p className="card-text">
                   Contact at:{" "}
                   <a href="mailto: jadenb04@iastate.edu">
                     jadenb04@iastate.edu
@@ -443,10 +451,10 @@ function App() {
               </div>
             </div>
           </div>
-          <div class="col-4">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <p class="card-text">
+          <div className="col-4">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <p className="card-text">
                   Meet <strong>Patrick Lenahan</strong>, the co-founder of
                   DisneyMovieRatings.com. With a deep-rooted passion for Disney
                   and a talent for web development, Patrick's vision transformed
@@ -457,7 +465,7 @@ function App() {
                   aficionado on a mission to share the joy and nostalgia of
                   Disney movies with fans worldwide.
                 </p>
-                <p class="card-text">
+                <p className="card-text">
                   Contact at:{" "}
                   <a href="mailto: plenahan@iastate.edu">
                     plenahan@iastate.edu
@@ -502,8 +510,8 @@ function App() {
         <a className="navbar-brand" href="#">
           Disney Flick Picks
         </a>
-        {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button> */}
         <div id="navbarNav">
           <ul className="navbar-nav">
@@ -567,6 +575,7 @@ function App() {
       </nav>
       {getMethod()}
       {renderPage()}
+      {footer}
     </div>
   );
 }
