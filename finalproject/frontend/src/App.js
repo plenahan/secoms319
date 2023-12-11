@@ -5,6 +5,7 @@ var marvelMovies = [];
 var pixarMovies = [];
 var starWarsMovies = [];
 var yourMoviesArr = [];
+
 function getMethod() {
   fetch("http://localhost:8080")
     .then((response) => response.json())
@@ -20,13 +21,15 @@ function getMethod() {
 function App() {
   getMethod();
   const [currentPage, setCurrentPage] = useState("home");
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  
 
   const [addNewMovie, setAddNewMovie] = useState({
     title: "",
     releaseDate: "",
     director: "",
-    rating: 0,
+    rating: 0.0,
     file: ""
   });
 
@@ -51,6 +54,7 @@ function App() {
   const handleYourMovieClick = (movieId) => {
     const selected = yourMoviesArr[movieId];
     setSelectedMovie(selected);
+    setSelectedIndex(movieId);
     setCurrentPage("showPage");
   };
 
@@ -60,7 +64,7 @@ function App() {
     fetch("http://127.0.0.1:8080/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(addNewMovie)})
+      body: JSON.stringify({movie: addNewMovie})})
       .then((response) => response.json())
       .then((data) => {
         console.log("Post a new Movie completed");
@@ -70,8 +74,47 @@ function App() {
           //const keys = Object.keys(data);
           const value = Object.values(data);
           alert(value);
+          
         }
       });
+  }
+
+  async function updateSubmit(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({ index: selectedIndex, newMovie: selectedMovie }),
+      });
+
+      const result = await response.text();
+      alert(result);
+     
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function deleteMovie(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/delete", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ index: selectedIndex }),
+      });
+  
+      const result = await response.text();
+      alert(result);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function handleChange(evt) {
@@ -86,6 +129,26 @@ function App() {
       setAddNewMovie({ ...addNewMovie, rating: value });
     } else if (evt.target.name === "image") {
       setAddNewMovie({ ...addNewMovie, file: value });
+    } 
+  }
+
+  function handleUpdateChange(evt) {
+    const value = evt.target.value;
+    if (evt.target.name === "title") {
+      setAddNewMovie({ ...addNewMovie, title: value });
+      setSelectedMovie({ ...selectedMovie, title: value });
+    } else if (evt.target.name === "releaseDate") {
+      setAddNewMovie({ ...addNewMovie, releaseDate: value });
+      setSelectedMovie({ ...selectedMovie, releaseDate: value });
+    } else if (evt.target.name === "director") {
+      setAddNewMovie({ ...addNewMovie, director: value });
+      setSelectedMovie({ ...selectedMovie, director: value });
+    } else if (evt.target.name === "rating") {
+      setAddNewMovie({ ...addNewMovie, rating: value });
+      setSelectedMovie({ ...selectedMovie, rating: value });
+    } else if (evt.target.name === "image") {
+      setAddNewMovie({ ...addNewMovie, file: value });
+      setSelectedMovie({ ...selectedMovie, file: value });
     } 
   }
 
@@ -105,28 +168,87 @@ function App() {
           </div>
         <div class="list">
           <h2 id="director">Director: {movie.director}</h2>
-          <h2 id="rating">Rotten Tomatoes Score: {movie.rottenTomatosScore}</h2>
+          <h2 id="rating">Rating: {movie.rottenTomatosScore}</h2>
           <h2 id="releaseDate">Release Date: {movie.releaseDate}</h2>
       </div>
         {/* <h2>{movie.title}</h2> */}
         
           </div>
+          <button class="btn btn-primary" onClick={() => setCurrentPage("updateMovie")}>Edit</button>
+          <button class="btn btn-danger" onClick={deleteMovie}>Delete</button>
           </div>
         
     );
   };
 
   const addMovie = (
-    <div>
+    <div class="container">
+      <h1 class="display-4 fw-normal text-body-emphasis">Add Movie</h1>
     <form action="">
+    <div class="form-row">
+    <div class="form-item">
+     <label>Title</label>
       <input type="text" name="title" value={addNewMovie.title} onChange={handleChange}/>
+    </div>
+    <div class="form-item">
+      <label>Release Date</label>
       <input type="text" name="releaseDate" value={addNewMovie.releaseDate} onChange={handleChange}/>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-item">
+      <label>Director</label>
       <input type="text" name="director" value={addNewMovie.director} onChange={handleChange}/>
+        </div>
+        <div class="form-item">
+      <label>Rating</label>
       <input type="number" name="rating" value={addNewMovie.rating} onChange={handleChange}/>
+        </div>
+      </div>
+      <div class="form-row">
+      <div class="form-item">
+      <label>Image File Name</label>
       <input type="text" name="image" value={addNewMovie.file} onChange={handleChange}/>
-      <button type="submit" onClick={handleOnSubmit}>
-            submit
-          </button>
+        </div>
+        </div>
+      
+      <button class="btn btn-primary" type="submit" onClick={handleOnSubmit}>Submit</button>
+    </form>
+    </div>
+  );
+
+  const updateMovie = (
+    <div class="container">
+      <h1 class="display-4 fw-normal text-body-emphasis">Update Movie</h1>
+    <form action="">
+    <div class="form-row">
+    <div class="form-item">
+     <label>Title</label>
+      <input type="text" name="title" value={selectedMovie.title} onChange={handleUpdateChange}/>
+    </div>
+    <div class="form-item">
+      <label>Release Date</label>
+      <input type="text" name="releaseDate" value={selectedMovie.releaseDate} onChange={handleUpdateChange}/>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="form-item">
+      <label>Director</label>
+      <input type="text" name="director" value={selectedMovie.director} onChange={handleUpdateChange}/>
+        </div>
+        <div class="form-item">
+      <label>Rating</label>
+      <input type="number" name="rating" value={selectedMovie.rating} onChange={handleUpdateChange}/>
+        </div>
+      </div>
+      <div class="form-row">
+      <div class="form-item">
+      <label>Image File Name</label>
+      <input type="text" name="image" value={selectedMovie.file} onChange={handleUpdateChange}/>
+        </div>
+        </div>
+      
+      <button class="btn btn-primary" type="submit" onClick={updateSubmit}>Submit</button>
     </form>
     </div>
   );
@@ -136,8 +258,8 @@ function App() {
     if(movies.length > 0){
     return (
     <div class="container">
-      <button onClick={() => setCurrentPage("addMovie")}>post</button>
       <h1 class="display-4 fw-normal text-body-emphasis">{movietype}</h1>
+      <button class="btn btn-primary" onClick={() => setCurrentPage("addMovie")}>Add A Movie+</button>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         
       {movies.map((el, index) => (
@@ -164,9 +286,6 @@ function App() {
       </div>
       ))}
       </div>
-      <div class="container">
-        {/* {addMovie} */}
-      </div>
     </div>
     
   );
@@ -174,7 +293,7 @@ function App() {
         return (
           <div class="container">
             <h1 class="display-4 fw-normal text-body-emphasis">{movietype}</h1>
-            {/* {addMovie}   */}
+            <button class="btn btn-primary" onClick={() => setCurrentPage("addMovie")}>Add A Movie+</button>
           </div>
         )
       }
@@ -370,6 +489,8 @@ function App() {
         return showPage;
       case "addMovie":
         return addMovie;
+      case "updateMovie":
+        return updateMovie;
       case "about":
         return aboutPage;
     }

@@ -58,7 +58,7 @@ app.post("/post", async (req, res) => {
   res.send(results);
 });
 
-app.put("/update", async (req, res) => {
+app.put("/update/:index", async (req, res) => {
   await client.connect();
 
   const id = req.body.itemId;
