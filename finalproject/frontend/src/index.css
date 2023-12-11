@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.grid_container {
+  display: flex;
+  margin: 4rem;
+}
+
+.list {
+  display: block;
+  margin: 2rem;
+}
+
+#cover {
+  padding: 1rem 3rem;
+}
+
+#title {
+  padding-left: 3rem; 
+  padding-top: 3rem;
+}
+
+.image {
+  cursor: pointer;
+}
+
+body{
+  background-color: #f8f9fa;
+}
+
+.select {
+  color: rgb(0, 149, 255);
+}
+
+body{
+    background-color:#f8f9fa;
+}
+
+h2{
+    margin-top:20%;
+}
