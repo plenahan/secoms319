@@ -168,7 +168,7 @@ function App() {
           </div>
         <div className="list">
           <h2 id="director">Director: {movie.director}</h2>
-          <h2 id="rating">Rating: {movie.rottenTomatosScore}</h2>
+          <h2 id="rating">Rating: {movie.rottenTomatosScore}/10</h2>
           <h2 id="releaseDate">Release Date: {movie.releaseDate}</h2>
       </div>
         {/* <h2>{movie.title}</h2> */}
@@ -420,7 +420,7 @@ function App() {
             <p>
               Students in SE/ComS319 Construction of User Interfaces, Spring
               2023 pretending to be own a movie rating website. This project was
-              finished on 11/29/2023 for Dr. Abraham Aldaco aalacdo@iastate.edu
+              finished on 12/11/2023 for Abraham N. Aldaco Gastelum aalacdo@iastate.edu
             </p>
           </div>
         </div>
